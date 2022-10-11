@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+    />
+    <script>
+      function displayQty(listData, checkId, qtyId) {
+        var checkBox = document.getElementById(checkId);
+        var qty = document.getElementById(qtyId);
+        if (checkBox.checked == true) {
+          qty.style.display = "block";
+          checkBox.value = listData + "," + qty.value;
+        } else {
+          qty.style.display = "none";
+        }
+      }
+    </script>
+    <style>
+      .avatar {
+        float: left;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      .avatar:hover {
+        background-color: #000;
+        cursor: pointer;
+      }
+
+      .navbar {
+        width: 100%;
+        overflow: auto;
+      }
+
+      .menu {
+        float: left;
+        text-align: center;
+        padding: 12px;
+        color: #000;
+        text-decoration: none;
+        font-size: 17px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <header>
+      <h1>Dashboard Page</h1>
+    </header>
+
+    <nav>
+      <form method="post" action="/user/img/update-profile" enctype="multipart/form-data">
+        <div class="navbar">
+          <img src="/user/img/profile" alt="Avatar" class="avatar" />
+          <label class="menu">Hello {{.Cart.Name}}</label>
+          <label class="menu">Update Profile: </label>
+          <input type="file" name="file-avatar" required />
+          <input type="submit" />
+        </div>
+      </form>
+    </nav>
+
+    <section>
+      <h2>List Product</h2>
+      <form method="post" action="/cart/add">
+        {{range $val := .Product}}
+        <input type="checkbox" id="check-{{ .Id }}" name="product" onclick="displayQty('{{ .Id }},{{ .Name }},{{ .Price }}', 'check-{{ .Id }}', 'qty-{{ .Id }}')" />
+        <label>{{ .Id }}. {{ .Name }}: Rp. {{ .Price }},-</label>
+        <input type="number" style="display: none" id="qty-{{ .Id }}" value="1" min="1" max="100" onchange="displayQty('{{ .Id }},{{ .Name }},{{ .Price }}', 'check-{{ .Id }}', 'qty-{{ .Id }}')" />
+        <br />
+        {{else}} Empty Product {{end}}
+        <button type="submmit">Add to Cart</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>My Cart</h2>
+
+      <ul>
+        {{range $val := .Cart.Cart}}
+        <li>
+          {{ .Name }}
+          <ul>
+            <li>Price: Rp. {{ .Price }},-</li>
+            <li>Quantity: {{ .Quantity }}</li>
+            <li>Total: {{ .Total }}</li>
+          </ul>
+        </li>
+        {{else}} Empty Cart {{end}}
+      </ul>
+      <p>Total Price Rp. {{.Cart.TotalPrice}},-</p>
+    </section>
+
+    <footer>
+      <form method="get" action="/user/logout">
+        <button type="submmit">Logout</button>
+      </form>
+    </footer> -->
+
+    <header>
+      <nav class="navbar w-full bg-white">
+        <div class="container-lg px-0">
+          <div class="flex w-full items-center">
+            <img src="/user/img/profile" alt="Avatar" class="avatar mr-5" />
+            <a class="nav-brand mr-auto ml-0" href="#">Hello, you're loggin as {{.Cart.Name}}</a>
+          </div>
+          <div>
+            <ul class="navbar-nav items-center">
+              <li>
+                <form method="post" action="/user/img/update-profile" enctype="multipart/form-data" class="flex justify-between items-center">
+                  <input type="file" name="file-avatar" required />
+                  <button class="button button-green mr-3" data-ripple-light="true">Update</button>
+                </form>
+              </li>
+              <li>
+                <form method="get" action="/user/logout">
+                  <button class="button button-outlined button-green mr-3" data-ripple-dark="true">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="py-5 px-6">
+      <div class="flex flex-wrap">
+        <div class="w-full self-center px-4 lg:w-1/2 lg:px-10">
+          <h2 class="text-4xl">List Product</h2>
+          <form method="post" action="/cart/add">
+            {{range $val := .Product}}
+            <div style="width: 300px">
+              <input type="checkbox" id="check-{{ .Id }}" name="product" onclick="displayQty('{{ .Id }},{{ .Name }},{{ .Price }}', 'check-{{ .Id }}', 'qty-{{ .Id }}')" />
+              <label class="text-xl">{{ .Id }}. {{ .Name }}: Rp. {{ .Price }},-</label>
+
+              <input
+                type="number"
+                style="display: none"
+                class="bg-gray-50 border border-gray-300 text-green-900 text-sm rounded-lg float-right p-2.5"
+                id="qty-{{ .Id }}"
+                value="1"
+                min="1"
+                max="100"
+                onchange="displayQty('{{ .Id }},{{ .Name }},{{ .Price }}', 'check-{{ .Id }}', 'qty-{{ .Id }}')"
+              />
+            </div>
+            <br />
+            {{else}} Empty Product {{end}}
+            <button type="submit" class="button button-text button-pink mr-3" data-ripple-dark="true">Add to Cart</button>
+          </form>
+        </div>
+        <div class="w-full self-center px-4 lg:w-1/2 lg:px-10">
+          <h2 class="text-4xl">My Cart</h2>
+
+          <ul>
+            {{range $val := .Cart.Cart}}
+            <li>
+              <span class="text-xl">{{ .Name }}</span>
+              <ul class="px-6" style="list-style: circle">
+                <li>Price: Rp. {{ .Price }},-</li>
+                <li>Quantity: {{ .Quantity }}</li>
+                <li>Total: {{ .Total }}</li>
+              </ul>
+            </li>
+            {{else}} Empty Cart {{end}}
+          </ul>
+          <p class="font-medium text-xl mt-2">Total Price Rp. {{.Cart.TotalPrice}},-</p>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+  </body>
+</html>

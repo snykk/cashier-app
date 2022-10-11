@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Message</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <!-- <h1>Hello {{.name}}</h1>
+    <p>{{.message}}</p>
+
+    <a href="/page/login">Go to Login Page</a> -->
+    <section class="py-24 flex items-center min-h-screen justify-center bg-white">
+      <div class="mx-auto max-w-[43rem]">
+        <div class="text-center">
+          <p class="text-lg font-medium leading-8 text-green-500" style="text-transform: capitalize">{{.message}}</p>
+          <h1 class="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-black">Hurraaaaaaaaaaaaaaaaaa</h1>
+          <p class="mt-3 text-lg leading-relaxed text-slate-400">Now you already have an account. Login first to take our service</p>
+        </div>
+
+        <div class="mt-6 flex items-center justify-center gap-4">
+          <a href="/page/login" class="transform rounded-md bg-green-500 px-5 py-3 font-medium text-white transition-colors hover:bg-green-400">Get started</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

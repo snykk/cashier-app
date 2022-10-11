@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "name":"Tea",
+        "price":"20000"
+    },
+    {
+        "id": "2",
+        "name":"Milk",
+        "price":"10000"
+    },
+    {
+        "id": "3",
+        "name":"Cofe",
+        "price":"25000"
+    },
+    {
+        "id": "4",
+        "name":"Apple",
+        "price":"15000"
+    },
+    {
+        "id": "5",
+        "name":"Bread",
+        "price":"30000"
+    },
+    {
+        "id": "6",
+        "name":"Cake",
+        "price":"40000"
+    }
+]
